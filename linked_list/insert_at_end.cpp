@@ -10,6 +10,7 @@ struct link *start;
 void createList(struct link *);
 void display(struct link *);
 void insert_at_beginning(struct link *);
+void insert_at_end(struct link *);
 
 int main(){
 	struct link *node;
@@ -23,6 +24,8 @@ int main(){
 	while(ch!=4){
 		printf("\n1 -> Display\n");
 		printf("2 -> Insert At Beginning\n");
+		printf("3 -> Insert At End\n");
+		printf("4 -> Terminate\n");
 		printf("Enter your choice: ");
 		scanf("%d", &ch);
 		printf("\n");
@@ -35,6 +38,9 @@ int main(){
 				insert_at_beginning(node);
 				node = start;
 				start = NULL;
+				break;
+			case 3:
+				insert_at_end(node);
 				break;
 			case 4:
 				break;
@@ -93,4 +99,25 @@ void insert_at_beginning(struct link *node){
 	scanf("%d", &curr->info);
 	start = curr;
 }
+
+void insert_at_end(struct link *node){
+	struct link *curr;
+	while(node->next != NULL){
+		node = node->next;
+	}
+	curr = (struct link *)malloc(sizeof(struct link));
+	curr->next = NULL;
+	node->next = curr;
+	printf("\nEnter the value of to be inserted: ");
+	scanf("%d", &curr->info);
+}
+
+
+
+
+
+
+
+
+
 
