@@ -1,7 +1,6 @@
 #include<stdio.h>
 #include<stdlib.h>
 
-#define SIZE 100;
 struct link{
 	int info;
 	struct link *next;
