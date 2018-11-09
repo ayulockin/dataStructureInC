@@ -34,7 +34,7 @@ void createList(struct link *node){
 	fflush(stdin);
 	ch = getchar();
 	while(ch !='n'){
-		node->next = (struct link *)malloc(sizeof(struct link)); // allocating a new pointer to the next part of current node
+		node->next = (struct link *)malloc(sizeof(struct link)); // allocating a new pointer to the 'next' part of current node
 		if(node->next == NULL){
 			printf("\nOut of memory");
 			exit(0);
