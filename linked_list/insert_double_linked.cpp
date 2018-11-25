@@ -14,6 +14,7 @@ dlink *start;
 
 void createlist(dlink *);
 void insertatstart(int);
+void insertatend(int);
 void displaydl(dlink *);
 
 int main(){
@@ -22,11 +23,12 @@ int main(){
 	start = node;
 	createlist(node);
 	int val;
-	char op='2';
-	while(op!=3){
-		printf("1 -> Insert value\n");
-		printf("2 -> Display list\n");
-		printf("3 -> Terminate\n");
+	char op='1';
+	while(op!='4'){
+		printf("1 -> Insert value at beginning\n");
+		printf("2 -> Insert value at end\n");
+		printf("3 -> Display list\n");
+		printf("4 -> Terminate\n");
 		printf("Enter the choice of operation on your linked list: \n");
 		fflush(stdin);
 		op = getchar();
@@ -38,9 +40,14 @@ int main(){
 				node = start;
 				break;
 			case '2':
-				displaydl(node);
+				printf("Enter the value you want to insert: \n");
+				scanf("%d", &val);
+				insertatend(val);
 				break;
 			case '3':
+				displaydl(node);
+				break;
+			case '4':
 				printf("Terminating ......................../");
 				exit(0);
 		}
@@ -99,11 +106,22 @@ void insertatstart(int val){
 	insert->next = start;
 	insert->prev = NULL;
 	start->prev = insert;
-	start = insert;		
-	
+	start = insert;			
 }
 
-
+void insertatend(int val){
+	dlink *end;
+	end = (dlink *)malloc(sizeof(dlink));
+	dlink *temp;
+	temp = start;
+	while(temp->next!=NULL){
+		temp = temp->next;
+	}
+	end->info = val;
+	end->next = NULL;
+	end->prev = temp;
+	temp->next = end;
+}
 
 
 
