@@ -2,10 +2,15 @@
 
 struct point{
 	int x, y;
-}p1 ; //structure defined; memory not yet allocated; 
+};// p1 ; //structure defined; memory not yet allocated; 
       //variable declaration with structure declaration
 
+typedef struct point P1;
+
+
 int main(){
+	P1 p1;
+	
 	// variable decralation like basic type
 	//struct point p1 = {1,2}; //structure declared as vairable; memory allocated
 	p1.x = 20; // accessing values of structure, here assigning value 
