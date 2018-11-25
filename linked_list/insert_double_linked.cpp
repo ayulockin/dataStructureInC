@@ -15,20 +15,23 @@ dlink *start;
 void createlist(dlink *);
 void insertatstart(int);
 void insertatend(int);
+void insertatloc(int, int);
 void displaydl(dlink *);
+int countnodes();
 
 int main(){
 	dlink *node;
 	node = (dlink *)malloc(sizeof(dlink));
 	start = node;
 	createlist(node);
-	int val;
+	int val, loc;
 	char op='1';
-	while(op!='4'){
+	while(op!='5'){
 		printf("1 -> Insert value at beginning\n");
 		printf("2 -> Insert value at end\n");
-		printf("3 -> Display list\n");
-		printf("4 -> Terminate\n");
+		printf("3 -> Insert value at location\n");
+		printf("4 -> Display list\n");
+		printf("5 -> Terminate\n");
 		printf("Enter the choice of operation on your linked list: \n");
 		fflush(stdin);
 		op = getchar();
@@ -45,9 +48,16 @@ int main(){
 				insertatend(val);
 				break;
 			case '3':
-				displaydl(node);
+				printf("Enter where you want to insert: \n");
+				scanf("%d", &loc);
+				printf("Enter the value you want to insert: \n");
+				scanf("%d", &val);
+				insertatloc(loc, val);
 				break;
 			case '4':
+				displaydl(node);
+				break;
+			case '5':
 				printf("Terminating ......................../");
 				exit(0);
 		}
@@ -123,5 +133,32 @@ void insertatend(int val){
 	temp->next = end;
 }
 
+void insertatloc(int loc, int val){
+	int count = countnodes();
+	if(loc>count){printf("Out of bounds\n");}
+	dlink *atloc;
+	atloc = (dlink *)malloc(sizeof(dlink));
+	dlink *atloctemp;
+	atloctemp = start;
+	while(loc!=1){
+		atloctemp = atloctemp->next;
+		loc--;
+	}
+	atloc->info = val;
+	atloc->next = atloctemp;
+	atloc->prev = atloctemp->prev;
+	atloc->prev->next = atloc;
+	atloctemp->prev = atloc;
+}
 
+int countnodes(){
+	dlink *temp;
+	int count;
+	temp = start;
+	while(temp->next!=NULL){
+		temp = temp->next;
+		count++;
+	}
+	return count;
+}
 
