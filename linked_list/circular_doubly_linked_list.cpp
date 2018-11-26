@@ -28,7 +28,7 @@ void createList(dlink *node){
 	int i=1; char ch;
 	printf("Enter the value of %d node: \n", i);
 	scanf("%d", &node->info);
-	node->next = start;
+	node->next = start; 
 	node->prev = start;
 	printf("Enter 'n' to quit | 'y' to continue: \n");
 	fflush(stdin);
